@@ -27,7 +27,7 @@ The function includes the k-sample test proposed in Zhan and Hart (2012), “ind
 
 ### Return
  A list with class "htest" containing the following components:
-+ **standarized statistic**: }{the value of the standarized statistic.
++ **standarized statistic**: the value of the standarized statistic.
 + **p.value**: the p-value for the test.
 + **statistic**: the value of the statistic.
 + **variance**: the value of the variance estimator.
