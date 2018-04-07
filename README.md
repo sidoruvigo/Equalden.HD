@@ -30,7 +30,7 @@ Performs the k-sample test proposed in Zhan and Hart (2012) for the setting of l
 The function includes the k-sample test proposed in Zhan and Hart (2012), “indep” and its adaptations for dependent data proposed in Cousido-Rocha et.al (2018), “dep.boot” and “dep.spect”. The k-sample test of Zhan and Hart (2012) test the null hypothesis that all the k-samples come from a single distribution when the number of samples is large, the sample size is small and the samples are independent of each other. The statistic of Zhan and Hart (2012) is based on a comparison of k sample-specific kernel density estimates with a kernel density estimate computed from the pooled sample. An alternative expression of this statistic shows that it can be interpreted as a difference between the intra-samples variability and the inter-samples variability. This statistic is standarized using a variance estimator suitable when the k samples are independent of each other. The asymptotic normality (when k tends to infinity) of the standardized version of the statistic is used to compute the corresponding p-value. Cousido-Rocha et. al (2018) proposed two adaptions of the test of Zhan and Hart (2012) for the setting of dependent samples. These tests consider the statistic proposed in Zhan and Hart (2012) but standarize it using variance estimators suitables when the samples are weak dependent (mixing conditions see Doukhan, 1995). One of tests, “dep.boot”, standarize the statistic using a variance estimator based on the dependent multiplier bootstrap (B ̈uhlmann, 1993, Section 3.3), whereas the other test, “dep.spect”, uses a variance estimator based on the spectral analysis theory. Both tests performs similar, however the “dep.spect” test is computationally more efficient than the “dep.boot” test. Cousido-Rocha et. al (2018) concluded based on their simulation study that for independent samples the tests “dep.boot” and “dep.spect” are equal or more powerful than the test of Zhan and Hart (2012) althought they are protected against possible dependency.
 
 ### Return
- A list with class "htest" containing the following components:
+ A list containing the following components:
 + **standarized statistic**: the value of the standarized statistic.
 + **p.value**: the p-value for the test.
 + **statistic**: the value of the statistic.
@@ -41,7 +41,9 @@ The function includes the k-sample test proposed in Zhan and Hart (2012), “ind
 
 
 ### Usage
+```r
 Equalden.HD(X, method = c("indep", "dep.boot", "dep.spect"))
+```
 
 ### Example
 ```r
