@@ -3,8 +3,8 @@ Title: Testing the Equality of a High Dimensional Set of Densities
 Version: 1.0
 Authors@R: c(
   person("Cousido Rocha", "Marta", email = "martacousido@uvigo.es", role = "aut"),
-  person("Soage GonzÃ¡lez", "JosÃ© Carlos", email = "jsoage@uvigo.es", role = "cre"),
-  person("de UÃ±a Ãlvarez", "Jacobo", email = "jacobo@uvigo.es", role = "aut"))
+  person("Soage González", "José Carlos", email = "jsoage@uvigo.es", role = "cre"),
+  person("de Uña Álvarez", "Jacobo", email = "jacobo@uvigo.es", role = "aut"))
 Maintainer: Marta Cousido Rocha <martacousido@uvigo.es>
 Description: Three different k-sample tests in the setting of a low sample size and large dimension.
 Depends: R (>= 3.4.0)
@@ -14,5 +14,5 @@ RoxygenNote: 6.0.1
 NeedsCompilation: no
 Packaged: 2018-04-07 12:51:00 UTC; JoseCarlos
 Author: Cousido Rocha Marta [aut],
-  Soage GonzÃ¡lez JosÃ© Carlos [cre],
-  de UÃ±a Ãlvarez Jacobo [aut]
+  Soage González José Carlos [cre],
+  de Uña Álvarez Jacobo [aut]
