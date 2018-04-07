@@ -59,6 +59,6 @@ res <- Equalden.test.HD(X,  method = "indep")
 
 
 ## Authors
-+ Cousido-Rocha, Marta.
-+ Soage González, José Carlos.
-+ de Uña-Álvarez, Jacobo.
++ Marta Cousido-Rocha.
++ José Carlos Soage González.
++ Jacobo de Uña-Álvarez.
