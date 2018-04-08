@@ -346,8 +346,8 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
     SW <- mean(h1vec)
     SB <- mean(h3est)
     sig2 <- var(h1vec - 2 * h3est)
-    list(sqrt(p) * (SW - SB) / sqrt(sig2), SW - SB) # quitar sig2
-    return(list(sig2 = sig2))
+    list(sqrt(p) * (SW - SB) / sqrt(sig2), SW - SB, sig2 = sig2) # quitar sig2
+    # return(list(sig2 = sig2))
   }
 
 
@@ -416,8 +416,9 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   #=============================================================================
 
   ### The next line computes the standarized version of ZH test.
-  s <- teststat2(h, X)[1]
-  sig2 <- s$sig2
+  a <- teststat2(h, X)
+  s <- a[1]
+  sig2 <- a$sig2
 
   ### Then we compute the p-value using the asymptotic normality.
   pvalor3 <- 1 - pnorm(unlist(s))
@@ -444,14 +445,4 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   print(RVAL)
   return(invisible(RVAL2))
 }
-
-
-# n <- 2
-# p <- 100
-#
-# X <- matrix(rnorm(n * p), ncol = 2)
-#
-#
-# res <- Equalden.test.HD(X,  method = "indep")
-
 
