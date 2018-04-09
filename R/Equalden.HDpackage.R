@@ -20,6 +20,13 @@
 #' \item{License: GPL-2}
 #' }
 #'
+#' @return
+#' \itemize{
+#' \item{Equalden.test.HD: Performs the k-sample test proposed in Zhan and Hart (2012) for the setting of low sample size, large
+#' dimension and independent samples, and its adaptions to dependent samples proposed in Cousido-Rocha
+#' et. al (2018).}
+#' }
+#'
 #' @author
 #' \itemize{
 #' \item{Cousido Rocha, Marta.}

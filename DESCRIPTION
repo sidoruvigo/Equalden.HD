@@ -8,11 +8,13 @@ Authors@R: c(
 Maintainer: Marta Cousido Rocha <martacousido@uvigo.es>
 Description: Three different k-sample tests in the setting of a low sample size and large dimension.
 Depends: R (>= 3.4.0)
+Imports: npcp
 License: GPL-2
 Encoding: UTF-8
 RoxygenNote: 6.0.1
+Suggests: knitr, rmarkdown
 NeedsCompilation: no
-Packaged: 2018-04-07 12:51:00 UTC; JoseCarlos
+Packaged: 2018-04-09 11:19:40 UTC; JoseCarlos
 Author: Cousido Rocha Marta [aut],
   Soage González José Carlos [cre],
   de Uña Álvarez Jacobo [aut]

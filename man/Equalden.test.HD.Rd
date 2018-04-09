@@ -4,7 +4,7 @@
 \alias{Equalden.test.HD}
 \title{Testing the equality of a high dimensional set of densities}
 \usage{
-Equalden.HD(X, method = c("indep", "dep.boot", "dep.spect"))
+Equalden.test.HD(X, method = c("indep", "dep.boot", "dep.spect"))
 }
 \arguments{
 \item{X}{A matrix where each row is one of the k-samples.}

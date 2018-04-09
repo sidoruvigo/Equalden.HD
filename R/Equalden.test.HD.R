@@ -6,7 +6,7 @@
 #' et. al (2018).
 #'
 #' @usage
-#' Equalden.HD(X, method = c("indep", "dep.boot", "dep.spect"))
+#' Equalden.test.HD(X, method = c("indep", "dep.boot", "dep.spect"))
 #'
 #' @param X A matrix where each row is one of the k-samples.
 #' @param method the k-sample test. See details.
@@ -67,6 +67,8 @@
 #' res <- Equalden.test.HD(X,  method = "indep")
 #' }
 #'
+#' @import npcp
+#'
 #' @export
 Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   cat("Call:", "\n")
@@ -94,7 +96,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
       }
     }
 
-    Del <- dnorm(Del, sd = sqrt(2) * h)
+    Del <- stats::dnorm(Del, sd = sqrt(2) * h)
     One <- matrix(1, n * (n - 1) / 2, 1) # n*(n-1)/2 número de comparacións sen contar as duplicadas.
     ans <- 2 * Del %*% One # we do the summation of the subscript j.
     ans <- ans / (n * (n - 1))
@@ -111,7 +113,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
     }
 
     Del <- Del[(1:p)[(1:p) != i], ] # Sacamos as diferencias k=i.
-    Del <- dnorm(Del, sd = sqrt(2) * h)
+    Del <- stats::dnorm(Del, sd = sqrt(2) * h)
     sum(Del) / (n ^ 2 * (p - 1))
   }
 
@@ -166,7 +168,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
     L <- Lval(matrix(influ), method = min)
 
     ## Compute gamma.n
-    gamma.n <- as.numeric(ccf(influ, influ, lag.max = L,
+    gamma.n <- as.numeric(stats::ccf(influ, influ, lag.max = L,
                               type = "covariance", plot = FALSE)$acf)
 
     sqrderiv <- switch(weights,
@@ -286,7 +288,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
     m <- numeric(d)
 
     for (i in 1:d) {
-      rho <- acf(x[, i], lag.max = lagmax, type = "correlation",
+      rho <- stats::acf(x[, i], lag.max = lagmax, type = "correlation",
                  plot = FALSE)$acf[-1]
       m[i] <- mval(rho, lagmax, kn, rho.crit)
     }
@@ -345,11 +347,10 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
 
     SW <- mean(h1vec)
     SB <- mean(h3est)
-    sig2 <- var(h1vec - 2 * h3est)
+    sig2 <- stats::var(h1vec - 2 * h3est)
     list(sqrt(p) * (SW - SB) / sqrt(sig2), SW - SB, sig2 = sig2) # quitar sig2
     # return(list(sig2 = sig2))
   }
-
 
 
   n <- ncol(X)
@@ -370,7 +371,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   ### The next lines compute the bandwidht, see equation (23).
   c1 <- 1 / p
   c2 <- 1.114 * n ^ (-1 / 5)
-  si <- apply(X, 1, var)
+  si <- apply(X, 1, stats::var)
   spool <- sqrt(c1 * sum(si))
   h <- spool * c2
 
@@ -388,7 +389,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   eso <- (sqrt(p) * (e)) / (2 * sqrt((sigma)))
 
   ### Then we compute the p-value using the asymptotic normality.
-  pvalor1 <- 1 - pnorm(eso)
+  pvalor1 <- 1 - stats::pnorm(eso)
 
 
   #=============================================================================
@@ -408,7 +409,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   esa <- (sqrt(p) * (e)) / (2 * sqrt((sigma2)))
 
   ### Then we compute the p-value using the asymptotic normality.
-  pvalor2 <- 1 - pnorm(esa)
+  pvalor2 <- 1 - stats::pnorm(esa)
 
 
   #=============================================================================
@@ -421,7 +422,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   sig2 <- a$sig2
 
   ### Then we compute the p-value using the asymptotic normality.
-  pvalor3 <- 1 - pnorm(unlist(s))
+  pvalor3 <- 1 - stats::pnorm(unlist(s))
 
   statistic <- switch(method, dep.boot = eso, dep.spect = esa, indep = unlist(s))
   names(statistic) <- "standarized statistic"
@@ -445,4 +446,23 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   print(RVAL)
   return(invisible(RVAL2))
 }
+
+#
+# set.seed(1234)
+# n <- 2
+# p <- 100
+#
+# X <- matrix(rnorm(n * p), ncol = 2)
+#
+# res <- Equalden.test.HD(X,  method = "dep.boot")
+#
+# library(compiler)
+# new_func <- cmpfun(Equalden.test.HD)
+#
+# library(microbenchmark)
+#
+#
+# microbenchmark(times = 10, unit = "ms", func(10), new_func(10))
+
+
 

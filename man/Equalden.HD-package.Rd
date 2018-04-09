@@ -5,6 +5,13 @@
 \alias{Equalden.HD}
 \alias{Equalden.HD-package}
 \title{Package ‘Equalden.HD’}
+\value{
+\itemize{
+\item{Equalden.test.HD: Performs the k-sample test proposed in Zhan and Hart (2012) for the setting of low sample size, large
+dimension and independent samples, and its adaptions to dependent samples proposed in Cousido-Rocha
+et. al (2018).}
+}
+}
 \description{
 This package implements three different k-sample tests in the setting of low sample size and large
 dimension. The first one, proposed in Zhan and Hart (2012), test the null hypothesis that all the k-
