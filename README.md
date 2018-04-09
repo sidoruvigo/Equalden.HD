@@ -42,7 +42,7 @@ The function includes the k-sample test proposed in Zhan and Hart (2012), “ind
 
 ### Usage
 ```r
-Equalden.HD(X, method = c("indep", "dep.boot", "dep.spect"))
+Equalden.test.HD(X, method = c("indep", "dep.boot", "dep.spect"))
 ```
 
 ### Example
