@@ -75,7 +75,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   print(match.call())
   method <- match.arg(method)
   DNAME <- deparse(substitute(X))
-  METHOD <- "A test of the equality of a large numbers of densities"
+  METHOD <- " A test for the equality of a high dimensional set of densities"
 
   match.arg(method)
 
@@ -439,7 +439,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
                data.name = DNAME, sample.size = n, method1 = met)
 
   RVAL2 <- list(standarized.statistic = statistic, p.value = p.value,
-                statistc = e, variance = variance, m = m, k = p,
+                statistic = e, variance = variance, m = m, k = p,
                 sample.size = n, method = met, data.name = DNAME)
   class(RVAL) <- "htest"
 
