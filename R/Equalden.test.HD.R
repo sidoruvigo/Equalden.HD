@@ -1,44 +1,45 @@
-#' @title Testing the equality of a high dimensional set of densities
+#' @title A test for the equality of a high dimensional set of densities
 #'
 #' @description
-#' Performs the k-sample test proposed in Zhan and Hart (2012) for the setting of low sample size, large
-#' dimension and independent samples, and its adaptions to dependent samples proposed in Cousido-Rocha
-#' et. al (2018).
+#' Performs the k-sample test proposed by Zhan and Hart (2012) for the low sample size, high dimensional
+#' setting with independent samples, and its extensions for dependent samples proposed by Cousido-Rocha
+#' et al. (2018).
 #'
 #' @usage
 #' Equalden.test.HD(X, method = c("indep", "dep.boot", "dep.spect"))
 #'
 #' @param X A matrix where each row is one of the k-samples.
-#' @param method the k-sample test. See details.
+#' @param method the k-sample test. By default the "dep.spect" method is computed. See details.
 #'
 #' @details
-#' The function includes the k-sample test proposed in Zhan and Hart (2012), “indep” and its adaptations
-#' for dependent data proposed in Cousido-Rocha et.al (2018), “dep.boot” and “dep.spect”. The k-sample
-#' test of Zhan and Hart (2012) test the null hypothesis that all the k-samples come from a single distribution
-#' when the number of samples is large, the sample size is small and the samples are independent of each
-#' other. The statistic of Zhan and Hart (2012) is based on a comparison of k sample-specific kernel density
-#' estimates with a kernel density estimate computed from the pooled sample. An alternative expression of
-#' this statistic shows that it can be interpreted as a difference between the intra-samples variability and
-#' the inter-samples variability. This statistic is standarized using a variance estimator suitable when the
-#' k samples are independent of each other. The asymptotic normality (when k tends to infinity) of the
-#' standardized version of the statistic is used to compute the corresponding p-value. Cousido-Rocha et. al
-#' (2018) proposed two adaptions of the test of Zhan and Hart (2012) for the setting of dependent samples.
-#' These tests consider the statistic proposed in Zhan and Hart (2012) but standarize it using variance
-#' estimators suitables when the samples are weak dependent (mixing conditions see Doukhan, 1995). One
-#' of tests, “dep.boot’, standarize the statistic using a variance estimator based on the dependent multiplier
-#' bootstrap (B ̈uhlmann, 1993, Section 3.3), whereas the other test, “dep.spect”, uses a variance estimator
-#' based on the spectral analysis theory. Both tests performs similar, however the “dep.spect” test is
-#' computationally more efficient than the “dep.boot” test. Cousido-Rocha et. al (2018) concluded based
-#' on their simulation study that for independent samples the tests “dep.boot” and “dep.spect” are equal
-#' or more powerful than the test of Zhan and Hart (2012) althought they are protected against possible
-#' dependency.
+#' The function implements the k-sample test proposed by Zhan and Hart (2012), method="indep", and
+#' its extensions for dependent data proposed by Cousido-Rocha et al. (2018), method="dep.boot" and
+#' "dep.spect". The method proposed by Zhan and Hart (2012) serves to test the null hypothesis that the
+#' k-samples have a common distribution. It is suitable when the k samples are independent and the number
+#' of samples k is large, and it works for sample sizes as small as 2. The statistic in Zhan and Hart (2012)
+#' is based on a comparison between the k sample-specific kernel density estimates and the kernel density
+#' estimate computed from the pooled sample. An alternative expression of this statistic shows that it can
+#' be interpreted as a difference between the intra-samples variability and the inter-samples variability.
+#' This statistic is standarized using a variance estimator which is valid for independent samples. The asymptotic
+#' normality (when k tends to infinity) of the standardized version of the statistic is used to compute the
+#' corresponding p-value. Cousido-Rocha et al. (2018) proposed two corrections of the test of Zhan and
+#' Hart (2012) for dependent samples. These tests standarize the statistic proposed in Zhan and Hart (2012)
+#' by using variance estimators which are suitable when the samples are weakly dependent. The method
+#' "dep.boot" implements the dependent multiplier bootstrap to estimate the variance, whereas the method
+#' "dep.spect" uses a variance estimator based on the spectral analysis theory. Both tests perform similarly,
+#' but the "dep.spect" test tends to be computationally more efficient than the "dep.boot" test. Cousido-
+#' Rocha et al. (2018) showed through simulations that, for independent samples, the tests "dep.boot" and
+#' "dep.spect" may be more powerful than the test in Zhan and Hart (2012) despite of being protected
+#' against possible dependences.
 #'
 #' @return A list with class "htest" containing the following components:
 #' \item{standarized statistic: }{the value of the standarized statistic.}
 #' \item{p.value: }{the p-value for the test.}
 #' \item{statistic: }{the value of the statistic.}
 #' \item{variance: }{the value of the variance estimator.}
-#' \item{m: }{number of significant lags for the variance estimator if the method is “dep.spect” or “dep.boot”. Null if the method is “indep” since no measure of the dependence between the samples is considered in this method.}
+#' \item{m: }{number of significant lags for the variance estimator if the method is "dep.spect" or "dep.boot". Null if the method is "indep" since no correction for dependence is required in this case.}
+#' \item{k: }{number of samples or populations.}
+#' \item{n: }{sample size.}
 #' \item{method: }{a character string indicating what k-test was performed.}
 #' \item{data.name: }{a character string giving the name of the data.}
 #'
@@ -53,9 +54,7 @@
 #'
 #' @references
 #' \itemize{
-#' \item{Bühlmann, P (1993) The blockwise bootstrap in time series and empirical processes (Ph.D. thesis), ETH Z ̈urich, Diss. ETH No. 10354.}
-#' \item{Cousido-Rocha, M., de Uña-Álvarez, J. (2018). Testing equality of a large number of densities under mixing conditions. Test (preprinted)}
-#' \item{Doukhan, P. (1995) Mixing: Properties and Examples. Springer-Verlag, New York.}
+#' \item{Cousido-Rocha, M., de Uña-Álvarez, J. (2018). Testing equality of a large number of densities under mixing conditions. Preprinted.}
 #' \item{Zhan, D., Hart, J. (2012) Testing equality of a large number of densities. Biometrika, 99, 1-17.}
 #' }
 #'
@@ -63,19 +62,42 @@
 #' \donttest{
 #' n <- 2
 #' k <- 100
+#' set.seed(1234)
 #' X <- matrix(rnorm(n * k), ncol = 2)
 #' res <- Equalden.test.HD(X,  method = "indep")
+#'
+#' ### The statistic and the variance estimator
+#' res$statistic
+#' res$variance
+#' ### The number of samples and sample size
+#' res$k
+#' res$n
+#'
+#' ### Real data analysis. We test the null hypothesis that 1000 randomly selected genes
+#' ### measured in patients with BRCA2 mutations have a common distribution. We use the test
+#' ### proposed in Cousido-Rocha et al. (2018) since correlation among expression levels of
+#' ### different genes on the same individual is expected.
+#' data(Hedenfalk)
+#' X <- Hedenfalk
+#' k <- dim(X)[1]
+#' ### We eliminate the additive patients effects by substracting to each column its sample mean.
+#' BRCA2 <- sweep(X[, 8:15], 2, apply(X[, 8:15], 2, mean))
+#' set.seed (1234)
+#' k <- sample(1:k, 1000)
+#' res1 <- Equalden.test.HD(BRCA2[k, ], method = "dep.boot")
+#' res1
+#' res2 <- Equalden.test.HD(BRCA2[k, ], method = "dep.spect")
+#' res2
 #' }
 #'
 #' @import npcp
-#'
 #' @export
 Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   cat("Call:", "\n")
   print(match.call())
   method <- match.arg(method)
   DNAME <- deparse(substitute(X))
-  METHOD <- " A test for the equality of a high dimensional set of densities"
+  METHOD <- "A test for the equality of a high dimensional set of densities"
 
   match.arg(method)
 
@@ -326,8 +348,8 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
     m <- length(c)
     part2 <- 0
 
-    for (i in 1:m){
-      part2 <- part2+ (1- (i/(m+1)))*c[i]
+    for (i in 1:m){ #dyn.load
+      part2 <- part2 + (1- (i/(m+1)))*c[i]
     }
 
     statistic <- variance(hseudo) + 2 * part2
@@ -370,7 +392,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
 
   ### The next lines compute the bandwidht, see equation (23).
   c1 <- 1 / p
-  c2 <- 1.114 * n ^ (-1 / 5)
+  c2 <- 1.144 * (n ^ (-1 / 5))
   si <- apply(X, 1, stats::var)
   spool <- sqrt(c1 * sum(si))
   h <- spool * c2
@@ -449,8 +471,8 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
 
 #
 # set.seed(1234)
-# n <- 2
-# p <- 100
+# n <- 4
+# p <- 1000
 #
 # X <- matrix(rnorm(n * p), ncol = 2)
 #
@@ -465,4 +487,5 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
 # microbenchmark(times = 10, unit = "ms", func(10), new_func(10))
 
 
-
+# load(file = "Hedenfalk_data.RData")
+# Hedenfalk <- load(file = "Hedenfalk_data.RData")

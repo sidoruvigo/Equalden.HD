@@ -4,17 +4,14 @@ Version: 1.0
 Authors@R: c(
   person("Cousido Rocha", "Marta", email = "martacousido@uvigo.es", role = "aut"),
   person("Soage González", "José Carlos", email = "jsoage@uvigo.es", role = "cre"),
-  person("de Uña Álvarez", "Jacobo", email = "jacobo@uvigo.es", role = "aut"))
+  person("de Uña Álvarez", "Jacobo", email = "jacobo@uvigo.es", role = "aut"),
+  person("D. Hart", "Jeffrey", email = "hart@stat.tamu.edu", role = "aut"))
 Maintainer: Marta Cousido Rocha <martacousido@uvigo.es>
-Description: Three different k-sample tests in the setting of a low sample size and large dimension.
+Description: The equality of a large number k of densities is tested by measuring the L2 distance between the corresponding kernel density estimators and the one based on the pooled sample. The test even works for sample sizes as small as 2.
 Depends: R (>= 3.4.0)
 Imports: npcp
+ByteCompile: true
 License: GPL-2
 Encoding: UTF-8
+LazyData: true
 RoxygenNote: 6.0.1
-Suggests: knitr, rmarkdown
-NeedsCompilation: no
-Packaged: 2018-04-09 11:19:40 UTC; JoseCarlos
-Author: Cousido Rocha Marta [aut],
-  Soage González José Carlos [cre],
-  de Uña Álvarez Jacobo [aut]

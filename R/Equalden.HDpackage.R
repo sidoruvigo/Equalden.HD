@@ -3,13 +3,13 @@
 #' Documentation for package ‘Equalden.HD’ version 1.0
 #'
 #' @description
-#' This package implements three different k-sample tests in the setting of low sample size and large
-#' dimension. The first one, proposed in Zhan and Hart (2012), test the null hypothesis that all the k-
-#' samples come from a single distribution when the number of samples is large, the sample size is small
-#' and the samples are independent of each other. The other tests proposed in Cousido-Rocha et. al (2018)
-#' are an adaptation of the test of Zhan and Hart (2012) to the setting of dependent sample sizes. The type
-#' of dependence considered in such tests is absolutely regular and strongly mixing (see Doukhan, 1995).
-#' The standarized version of the test statistic and the p-values are computed among other things.
+#'This package implements three different methods to test the null hypothesis that a large number k of
+#'samples have a common density. The sample size can be as small as 2. These methods are particularly
+#'well suited to the low sample size, high dimensional setting (n << k). The first method, proposed by
+#'Zhan and Hart (2012), was developed to test the null hypothesis when the samples are independent of
+#'each other. The other tests, proposed by Cousido-Rocha et al. (2018), are adaptations of the test in Zhan
+#'and Hart (2012) for the setting in which the samples are weakly dependent. The standarized version of
+#'each test statistic and its p-value are computed among other things.
 #'
 #'
 #' @details
@@ -32,12 +32,12 @@
 #' \item{Cousido Rocha, Marta.}
 #' \item{Soage González, José Carlos.}
 #' \item{de Uña-Álvarez, Jacobo.}
+#' \item{D. Hart, Jeffrey.}
 #' }
 #'
 #' @references
 #' \itemize{
-#' \item{Cousido-Rocha, M., de Uña-Álvarez, J. (2018). Testing equality of a large number of densities under mixing conditions. Test (preprinted)}
-#' \item{Doukhan, P. (1995) Mixing: Properties and Examples. Springer-Verlag, New York.}
+#' \item{Cousido-Rocha, M., de Uña-Álvarez, J. (2018). Testing equality of a large number of densities under mixing conditions. Preprint.}
 #' \item{Zhan, D., Hart, J. (2012) Testing equality of a large number of densities. Biometrika, 99, 1-17.}
 #' }
 #'
