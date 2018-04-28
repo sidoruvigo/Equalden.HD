@@ -81,7 +81,7 @@ res2
 ```
 
 ## References
-+ Cousido-Rocha, M., de Uña-Álvarez, J. (2018). Testing equality of a large number of densities under mixing conditions. Test (preprinted)
++ Cousido-Rocha, M., de Uña-Álvarez, J., and Hart, J.(2018). Testing equality of a large number of densities under mixing conditions. Preprint.
 + Zhan, D., Hart, J. (2012) Testing equality of a large number of densities. Biometrika, 99, 1-17.
 
 
