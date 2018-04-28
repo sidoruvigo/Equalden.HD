@@ -32,7 +32,7 @@
 #' "dep.spect" may be more powerful than the test in Zhan and Hart (2012) despite of being protected
 #' against possible dependences.
 #'
-#' @return A list with class "htest" containing the following components:
+#' @return A list containing the following components:
 #' \item{standarized statistic: }{the value of the standarized statistic.}
 #' \item{p.value: }{the p-value for the test.}
 #' \item{statistic: }{the value of the statistic.}
@@ -49,13 +49,13 @@
 #' \item{Marta Cousido-Rocha}
 #' \item{José Carlos Soage González}
 #' \item{Jacobo de Uña-Álvarez}
-#' \item{Maintainer: Marta Cousido-Rocha \email{martacousido@@uvigo.es}}
+#' \item{D. Hart, Jeffrey.}
 #' }
 #'
 #' @references
 #' \itemize{
-#' \item{Cousido-Rocha, M., de Uña-Álvarez, J. (2018). Testing equality of a large number of densities under mixing conditions. Preprinted.}
-#' \item{Zhan, D., Hart, J. (2012) Testing equality of a large number of densities. Biometrika, 99, 1-17.}
+#' \item{Cousido-Rocha, M., de Uña-Álvarez, J., and Hart, J.(2018). Testing equality of a large number of densities under mixing conditions. Preprint.}
+#' \item{Zhan, D., Hart, J. (2012). Testing equality of a large number of densities. Biometrika, 99, 1-17.}
 #' }
 #'
 #' @examples

@@ -34,8 +34,8 @@ Documentation for package ‘Equalden.HD’ version 1.0
 }
 \references{
 \itemize{
-\item{Cousido-Rocha, M., de Uña-Álvarez, J. (2018). Testing equality of a large number of densities under mixing conditions. Preprint.}
-\item{Zhan, D., Hart, J. (2012) Testing equality of a large number of densities. Biometrika, 99, 1-17.}
+\item{Cousido-Rocha, M., de Uña-Álvarez, J., and Hart, J.(2018). Testing equality of a large number of densities under mixing conditions. Preprint.}
+\item{Zhan, D., Hart, J. (2012). Testing equality of a large number of densities. Biometrika, 99, 1-17.}
 }
 }
 \author{
