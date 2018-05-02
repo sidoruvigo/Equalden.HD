@@ -447,6 +447,9 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   pvalor3 <- 1 - stats::pnorm(unlist(s))
 
   statistic <- switch(method, dep.boot = eso, dep.spect = esa, indep = unlist(s))
+  names(statistic) <- "standarized statistic"
+
+  statistic2 <- switch(method, dep.boot = eso, dep.spect = esa, indep = unlist(s))
 
   p.value <- switch(method, dep.boot = pvalor1, dep.spect = pvalor2, indep = pvalor3)
 
@@ -459,7 +462,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   RVAL <- list(statistic = statistic, p.value = p.value, method = METHOD,
                data.name = DNAME, sample.size = n, method1 = met)
 
-  RVAL2 <- list(standarized.statistic = statistic, p.value = p.value,
+  RVAL2 <- list(standarized.statistic = statistic2, p.value = p.value,
                 statistic = e, variance = variance, m = m, k = p,
                 n = n, method = met, data.name = DNAME)
   class(RVAL) <- "htest"
@@ -467,24 +470,3 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   print(RVAL)
   return(invisible(RVAL2))
 }
-
-#
-# set.seed(1234)
-# n <- 4
-# p <- 1000
-#
-# X <- matrix(rnorm(n * p), ncol = 2)
-#
-# res <- Equalden.test.HD(X,  method = "dep.boot")
-#
-# library(compiler)
-# new_func <- cmpfun(Equalden.test.HD)
-#
-# library(microbenchmark)
-#
-#
-# microbenchmark(times = 10, unit = "ms", func(10), new_func(10))
-
-
-# load(file = "Hedenfalk_data.RData")
-# Hedenfalk <- load(file = "Hedenfalk_data.RData")
