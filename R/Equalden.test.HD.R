@@ -447,7 +447,6 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   pvalor3 <- 1 - stats::pnorm(unlist(s))
 
   statistic <- switch(method, dep.boot = eso, dep.spect = esa, indep = unlist(s))
-  names(statistic) <- "standarized statistic"
 
   p.value <- switch(method, dep.boot = pvalor1, dep.spect = pvalor2, indep = pvalor3)
 
@@ -462,7 +461,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
 
   RVAL2 <- list(standarized.statistic = statistic, p.value = p.value,
                 statistic = e, variance = variance, m = m, k = p,
-                sample.size = n, method = met, data.name = DNAME)
+                n = n, method = met, data.name = DNAME)
   class(RVAL) <- "htest"
 
   print(RVAL)
