@@ -13,6 +13,12 @@ A microarray data set with 8038 logged gene expression levels measured on 5 rats
 subjected to the same treatment. The rows correspond to the genes and the columns refer to the rats.
 }
 \examples{
+\dontshow{
+data(Rat)
+X <- Rat
+k <- dim(X)[1]
+s <- apply(X[1:100,], 1, density)
+}
 \donttest{
 data(Rat)
 X <- Rat

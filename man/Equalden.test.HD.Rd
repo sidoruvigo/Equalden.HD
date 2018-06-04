@@ -50,6 +50,17 @@ Rocha et al. (2018) showed through simulations that, for independent samples, th
 against possible dependences.
 }
 \examples{
+\dontshow{
+n <- 2
+k <- 100
+set.seed(1234)
+X <- matrix(rnorm(n * k), ncol = 2)
+res <- Equalden.test.HD(X,  method = "indep")
+
+### The statistic and the variance estimator
+res$statistic
+res$variance
+}
 \donttest{
 n <- 2
 k <- 100
@@ -80,7 +91,6 @@ res1
 res2 <- Equalden.test.HD(BRCA2[k, ], method = "dep.spect")
 res2
 }
-
 }
 \references{
 \itemize{

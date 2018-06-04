@@ -14,6 +14,12 @@
 #' polyunsaturated fatty acids reprogram genetic signatures during colon cancer initiation and progression in the rat. Cancer Research, 64, 6797–6804.
 #'
 #' @examples
+#' \dontshow{
+#' data(Rat)
+#' X <- Rat
+#' k <- dim(X)[1]
+#' s <- apply(X[1:100,], 1, density)
+#' }
 #' \donttest{
 #' data(Rat)
 #' X <- Rat

@@ -20,6 +20,13 @@ mutations (columns 1-7) and on 8 patients with breast tumors having BRCA2 mutati
 The rows correspond to the genes and the columns refer to the patients.
 }
 \examples{
+\dontshow{
+data(Hedenfalk)
+X <- Hedenfalk
+k <- dim(X)[1]
+s <- apply(X[1:100, 1:7], 1, density)
+}
+
 \donttest{
 data(Hedenfalk)
 X <- Hedenfalk

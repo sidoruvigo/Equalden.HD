@@ -19,6 +19,13 @@
 #' Hedenfalk, I., Duggan, D., Chen, Y., Radmacher, M, Bitter, M., Simon, R., Meltzer, P., Guterson, B., Esteller, M., Kallioniemi, O., Wilfond, B., Borg, A., Trent, J., Raffeld, M., Yakhini, Z., BenDor, A., Dougherty, E., Kononen, J., Buberdorf, L., Fehrle, W., Pittaluga, S., Gruvberger, G., Loman, N., Johannsson, O., Olsson, H., and Sauter, G.(2001), Gene-Expression Profiles in Hereditary Breast Cancer. New England Journal of Medicine 344 (8), 539-548.
 #'
 #' @examples
+#' \dontshow{
+#' data(Hedenfalk)
+#' X <- Hedenfalk
+#' k <- dim(X)[1]
+#' s <- apply(X[1:100, 1:7], 1, density)
+#' }
+#'
 #' \donttest{
 #' data(Hedenfalk)
 #' X <- Hedenfalk
@@ -33,5 +40,5 @@
 #' for (i in 2:6){
 #'   lines(s[[rs[i]]], col = i)
 #' }
-#'}
+#' }
 "Hedenfalk"

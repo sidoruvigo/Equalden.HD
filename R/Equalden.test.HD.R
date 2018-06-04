@@ -59,6 +59,17 @@
 #' }
 #'
 #' @examples
+#' \dontshow{
+#' n <- 2
+#' k <- 100
+#' set.seed(1234)
+#' X <- matrix(rnorm(n * k), ncol = 2)
+#' res <- Equalden.test.HD(X,  method = "indep")
+#'
+#' ### The statistic and the variance estimator
+#' res$statistic
+#' res$variance
+#' }
 #' \donttest{
 #' n <- 2
 #' k <- 100
@@ -89,8 +100,7 @@
 #' res2 <- Equalden.test.HD(BRCA2[k, ], method = "dep.spect")
 #' res2
 #' }
-#'
-#' @import npcp
+#' @useDynLib Equalden.HD, .registration=TRUE
 #' @export
 Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   cat("Call:", "\n")
@@ -215,7 +225,6 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
            ifelse(1/2 <= abs(x) & abs(x) <= 1, 2 * (1 - abs(x))^3, 0))
   }
 
-  # library(npcp)
   pdfsumunif <- function(x,n) {
     nx <- length(x)
 
@@ -224,7 +233,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
        as.double(x),
        as.integer(nx),
        pdf = double(nx),
-       PACKAGE = "npcp")$pdf
+       PACKAGE = "Equalden.HD")$pdf
   }
 
 
@@ -470,3 +479,4 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
   print(RVAL)
   return(invisible(RVAL2))
 }
+
