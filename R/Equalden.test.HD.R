@@ -233,7 +233,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")){
        as.double(x),
        as.integer(nx),
        pdf = double(nx),
-       PACKAGE = "Equalden.HD")$pdf
+       PACKAGE = "npcp")$pdf
   }
 
 
