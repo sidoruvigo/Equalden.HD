@@ -7,6 +7,11 @@ Testing the Equality of a High Dimensional Set of Densities
 ```r
 devtools::install_github('sidoruvigo/Equalden.HD')
 ```
+
+[![Downloads](http://cranlogs.r-pkg.org/badges/DTDA.ni)](https://cran.r-project.org/package=Equalden.HD))
+ [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/DTDA.ni)](https://cran.r-project.org/package=Equalden.HD)
+ 
+ 
 ## Description (package)
 This package implements three different methods to test the null hypothesis that a large number k of samples have a common density. The sample size can be as small as 2. These methods are particularly well suited to the low sample size, high dimensional setting (n << k). The first method, proposed by Zhan and Hart (2012), was developed to test the null hypothesis when the samples are independent of each other. The other tests, proposed by Cousido-Rocha et al. (2018), are adaptations of the test in Zhan and Hart (2012) for the setting in which the samples are weakly dependent. The standarized version of each test statistic and its p-value are computed among other things.
 
