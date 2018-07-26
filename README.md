@@ -8,7 +8,7 @@ Testing the Equality of a High Dimensional Set of Densities
 devtools::install_github('sidoruvigo/Equalden.HD')
 ```
 
-[![Downloads](http://cranlogs.r-pkg.org/badges/Equalden.HD)](https://cran.r-project.org/package=Equalden.HD))
+[![Downloads](http://cranlogs.r-pkg.org/badges/Equalden.HD)](https://cran.r-project.org/package=Equalden.HD)
  [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/Equalden.HD)](https://cran.r-project.org/package=Equalden.HD)
  
  
