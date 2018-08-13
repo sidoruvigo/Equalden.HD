@@ -115,7 +115,6 @@
 #' points(ind, res1$I.statistics[ind], col = "red")
 #' }
 #' @importFrom  stats var
-#' @useDynLib Equalden.HD, .registration = TRUE
 #' @export
 Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")) {
   cat("Call:", "\n")
@@ -247,7 +246,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")) {
        as.double(x),
        as.integer(nx),
        pdf = double(nx),
-       PACKAGE = "Equalden.HD")$pdf
+       PACKAGE = "npcp")$pdf
   }
 
 
@@ -314,7 +313,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")) {
         ## When there are no significant lags, mhat must be the
         ## smallest positive integer (footnote c), hence mhat is set
         ## to one.
-        return( 1 )
+        return(1)
     }
   }
 
