@@ -33,6 +33,7 @@ Performs the k-sample test proposed by Zhan and Hart (2012) for the low sample s
 
 ### Details (Equalden.test.HD)
 The function implements the k-sample test proposed by Zhan and Hart (2012), method=“indep”, and its extensions for dependent data proposed by Cousido-Rocha et al. (2018), method=“dep.boot” and “dep.spect”. The method proposed by Zhan and Hart (2012) serves to test the null hypothesis that the k-samples have a common distribution. It is suitable when the k samples are independent and the number of samples k is large, and it works for sample sizes as small as 2. The statistic in Zhan and Hart (2012) is based on a comparison between the k sample-specific kernel density estimates and the kernel density estimate computed from the pooled sample. An alternative expression of this statistic shows that it can be interpreted as a difference between the intra-samples variability and the inter samples variability. This statistic is standarized using a variance estimator which is valid for independent samples. The asymptotic normality (when k tends to infinity) of the standardized version of the statistic is used to compute the corresponding p-value. Cousido-Rocha et al. (2018) proposed two corrections of the test of Zhan and Hart (2012) for dependent samples. These tests standarize the statistic proposed in Zhan and Hart (2012) by using variance estimators which are suitable when the samples are weakly dependent. The method “dep.boot” implements the dependent multiplier bootstrap to estimate the variance, whereas the method “dep.spect” uses a variance estimator based on the spectral analysis theory. Both tests perform similarly, but the “dep.spect” test tends to be computationally more efficient than the “dep.boot” test. Cousido-Rocha et al. (2018) showed through simulations that, for independent samples, the tests “dep.boot” and “dep.spect” may be more powerful than the test in Zhan and Hart (2012) despite of being protected against possible dependences.
+On the other hand, the statistic can be written as a sum of k individual statistics, each of them measures the difference between the intra-sample variability of the corresponding variable and the intersamples variability. Whether the null hypothesis is rejected, an exploratory analysis of such individual statistics can help to guess which genes are not equally distributed.
 
 ### Return
  A list containing the following components:
@@ -44,6 +45,7 @@ The function implements the k-sample test proposed by Zhan and Hart (2012), meth
 + **k**: number of samples or populations.
 + **n**: sample size.
 + **method**: a character string indicating what k-test was performed.
++ **I.statistics**: the k individual statistics.
 + **data.name**: a character string giving the name of the data.
 
 
