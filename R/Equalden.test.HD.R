@@ -114,7 +114,6 @@
 #'      main = "Individual statistics")
 #' points(ind, res1$I.statistics[ind], col = "red")
 #' }
-#' @useDynLib Equalden.HD, .registration = TRUE
 #' @export
 Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")) {
   cat("Call:", "\n")
