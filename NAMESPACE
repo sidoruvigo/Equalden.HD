@@ -2,4 +2,4 @@
 
 export(Equalden.test.HD)
 importFrom(stats,var)
-useDynLib(Equalden.HD, .registration = TRUE)
+
