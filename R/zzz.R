@@ -3,11 +3,11 @@
 }
 
 
-# # Opciones
-# #===================
-# .onLoad <- function(libname, pkgname) {
-#
-#   requireNamespace("npcp", quietly = TRUE)
-# }
+# Opciones
+#===================
+.onLoad <- function(libname, pkgname) {
+
+  requireNamespace("npcp", quietly = TRUE)
+}
 
 
