@@ -109,9 +109,14 @@
 #' I.statistics.sorted <- sort(res1$I.statistics)
 #' cv <- I.statistics.sorted[901]
 #' ind <- which(res1$I.statistics >= cv)
-#' plot(1:k, res1$I.statistics, xlim = c(0, k), ylim = c(min(res1$I.statistics),
-#'      max(res1$I.statistics)), xlab = "Genes", ylab = "statistic",
+#' plot(1:1000, res1$I.statistics, xlim = c(0, 1000), ylim = c(min(res1$I.statistics),
+#'      max(res1$I.statistics)),  xlab = "Genes", ylab = "statistic",
 #'      main = "Individual statistics")
+#' points(ind, res1$I.statistics[ind], col = "red")
+#'
+#' ### Zoom
+#' plot(1:1000, res1$I.statistics, xlim = c(0, 1000), ylim = c(0, max(res1$I.statistics)),
+#'      xlab = "Genes", ylab = "statistic", main = "Individual statistics")
 #' points(ind, res1$I.statistics[ind], col = "red")
 #' }
 #' @importFrom  stats var
