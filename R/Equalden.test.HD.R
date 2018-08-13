@@ -110,10 +110,12 @@
 #' cv <- I.statistics.sorted[901]
 #' ind <- which(res1$I.statistics >= cv)
 #' plot(1:k, res1$I.statistics, xlim = c(0, k), ylim = c(min(res1$I.statistics),
-#'      max(res1$I.statistics), xlab = "Genes", ylab = "statistic",
+#'      max(res1$I.statistics)), xlab = "Genes", ylab = "statistic",
 #'      main = "Individual statistics")
 #' points(ind, res1$I.statistics[ind], col = "red")
 #' }
+#' @importFrom  stats var
+#' @useDynLib Equalden.HD, .registration = TRUE
 #' @export
 Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")) {
   cat("Call:", "\n")
@@ -245,9 +247,8 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")) {
        as.double(x),
        as.integer(nx),
        pdf = double(nx),
-       PACKAGE = "npcp")$pdf
+       PACKAGE = "Equalden.HD")$pdf
   }
-
 
 
   convrect <- function(x, n) {
@@ -361,7 +362,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")) {
       var <- var + hseudo[j] * hseudo[j]
     }
 
-    return((1/p)*var)
+    return((1 / p) * var)
   }
 
   statistic <- function(c, hseudo) {
@@ -481,7 +482,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")) {
         # in ans we multiply for 2.
       }
     }
-    Del <- dnorm(Del, sd = sqrt(2) * h)
+    Del <- stats::dnorm(Del, sd = sqrt(2) * h)
     One <- matrix(1, n * (n - 1) / 2, 1) # n*(n-1)/2 n?mero de comparaci?ns sen contar as duplicadas.
     ans <- 2 * Del %*% One # we do the summation of the subscript j.
     ans <- ans / (n * (n - 1))
@@ -500,7 +501,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")) {
       Del <- cbind(Del, rep(X[i, j], len = p) - X)
     }
     Del <- Del[(1:p)[(1:p) != i], ] # sacamos as diferencias k=i.
-    Del <- dnorm(Del, sd = sqrt(2) * h)
+    Del <- stats::dnorm(Del, sd = sqrt(2) * h)
     sum(Del) / (n ^ 2 * (p - 1))
   }
 
