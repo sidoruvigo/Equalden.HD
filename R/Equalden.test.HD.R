@@ -31,10 +31,10 @@
 #' Rocha et al. (2018) showed through simulations that, for independent samples, the tests "dep.boot" and
 #' "dep.spect" may be more powerful than the test in Zhan and Hart (2012) despite of being protected
 #' against possible dependences.
-#' On the other hand, the statistic can be written as a sum of k individual statistics, each of them measures
-#' the difference between the intra-sample variability of the corresponding variable and the intersamples variability.
-#' Whether the null hypothesis is rejected, an exploratory analysis of such individual statistics can help to guess
-#' which genes are not equally distributed.
+#' On the other hand, the statistic can be written as a sum of k individual statistics, each of them
+#' measures the difference between the intra-sample variability of the corresponding variable and the inter-
+#' samples variability. Whether the null hypothesis is rejected, an exploratory analysis of such individual
+#' statistics can help to guess which genes are not equally distributed.
 #'
 #' @return A list containing the following components:
 #' \item{standarized statistic: }{the value of the standarized statistic.}
@@ -70,6 +70,7 @@
 #' set.seed(1234)
 #' X <- matrix(rnorm(n * k), ncol = 2)
 #' res <- Equalden.test.HD(X,  method = "indep")
+#' res
 #'
 #' ### The statistic and the variance estimator
 #' res$statistic
@@ -82,6 +83,7 @@
 #' X <- matrix(rnorm(n * k), ncol = 2)
 #' res <- Equalden.test.HD(X,  method = "indep")
 #'
+#' res
 #' ### The statistic and the variance estimator
 #' res$statistic
 #' res$variance
@@ -99,27 +101,30 @@
 #' ### We eliminate the additive patients effects by substracting to each column its sample mean.
 #' BRCA2 <- sweep(X[, 8:15], 2, apply(X[, 8:15], 2, mean))
 #' set.seed (1234)
-#' ind <- sample(1:k, 1000)
+#' se<-1000
+#' ind <- sample(1:k, se)
 #' res1 <- Equalden.test.HD(BRCA2[ind, ], method = "dep.boot")
 #' res1
 #' res2 <- Equalden.test.HD(BRCA2[ind, ], method = "dep.spect")
 #' res2
 #' ### The null hypothesis is rejected using both methods. Then we plot the individual statistics
 #' ### and highlight the 100 most extreme values.
+#' cu <- 100
 #' I.statistics.sorted <- sort(res1$I.statistics)
-#' cv <- I.statistics.sorted[901]
-#' ind <- which(res1$I.statistics >= cv)
-#' plot(1:1000, res1$I.statistics, xlim = c(0, 1000), ylim = c(min(res1$I.statistics),
-#'      max(res1$I.statistics)),  xlab = "Genes", ylab = "statistic",
-#'      main = "Individual statistics")
-#' points(ind, res1$I.statistics[ind], col = "red")
-#'
-#' ### Zoom
-#' plot(1:1000, res1$I.statistics, xlim = c(0, 1000), ylim = c(0, max(res1$I.statistics)),
+#' cv <- I.statistics.sorted[se-cu+1]
+#' ind2 <- which(res1$I.statistics >= cv)
+#' plot(1:se, res1$I.statistics, xlim = c(0, se), ylim = c(min(res1$I.statistics),
+#'                                                         max(res1$I.statistics)),
 #'      xlab = "Genes", ylab = "statistic", main = "Individual statistics")
-#' points(ind, res1$I.statistics[ind], col = "red")
+#' points(ind2, res1$I.statistics[ind2], col = "red")
+#' ### We zoom the plot in the following way since some individual statistics report extreme
+#' ### negative values in this data.
+#' plot(1:se, res1$I.statistics, xlim = c(0, se), ylim = c(0, max(res1$I.statistics)),
+#'      xlab = "Genes", ylab = "statistic", main = "Individual statistics")
+#' points(ind2, res1$I.statistics[ind2], col = "red")
 #' }
 #' @importFrom  stats var
+#' @useDynLib Equalden.HD, .registration = TRUE
 #' @export
 Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")) {
   cat("Call:", "\n")
@@ -251,7 +256,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")) {
        as.double(x),
        as.integer(nx),
        pdf = double(nx),
-       PACKAGE = "npcp")$pdf
+       PACKAGE = "Equalden.HD")$pdf
   }
 
 
@@ -318,7 +323,7 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")) {
         ## When there are no significant lags, mhat must be the
         ## smallest positive integer (footnote c), hence mhat is set
         ## to one.
-        return(1)
+        return( 1 )
     }
   }
 
@@ -405,7 +410,9 @@ Equalden.test.HD <- function(X, method = c("indep", "dep.boot", "dep.spect")) {
   if(n < 2){
     stop("Number of columns must be at least 2.")
   }
+
   p <- nrow(X)
+
   if(p < 2){
     stop("Number of rows must be at least 2.")
   }
